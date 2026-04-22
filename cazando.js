@@ -11,11 +11,15 @@ const ANCHO_COMIDA=20;
 let gatoX = 0;
 let gatoY = 0;
 let comidaX = 0;  
-let comidaY = 0;{}
+let comidaY = 0;
+let tiempo = 10;
+let intervalo;
 
 function iniciarJuego(){
     graficarGato();
     graficarComida();
+
+    intervalo = setInterval(restarTiempo, 1000);
 }
 
 function graficarGato(){
@@ -82,4 +86,10 @@ function detectarColision(){
     }
 }
 
-
+function restarTiempo(){
+    tiempo -= 1;
+    mostrarEnSpan("txttiempo", tiempo);
+    if (tiempo <= 0){
+        alert("¡Se acabó el tiempo! Intenta de nuevo.");
+}
+}
