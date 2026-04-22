@@ -11,7 +11,7 @@ const ANCHO_COMIDA=20;
 let gatoX = 0;
 let gatoY = 0;
 let comidaX = 0;  
-let comidaY = 0;
+let comidaY = 0;{}
 
 function iniciarJuego(){
     graficarGato();
@@ -30,7 +30,7 @@ function graficarRectangulo(x, y, ancho, alto, color) {
 }
 
 function graficarComida(){
-    graficarRectangulo(canvas.width - ANCHO_COMIDA, canvas.height - ALTURA_COMIDA, ANCHO_COMIDA, ALTURA_COMIDA, "orange");
+    graficarRectangulo(canvas.width - ANCHO_COMIDA + comidaX, canvas.height - ALTURA_COMIDA + comidaY, ANCHO_COMIDA, ALTURA_COMIDA, "orange");
 }
 
 function limpiarCanvas(){
@@ -40,30 +40,46 @@ function limpiarCanvas(){
 function moverIzquierda(){
     gatoX-=10;
     actualizarPantalla();
+    detectarColision();
 }
 function moverDerecha(){
     gatoX+=10;
     actualizarPantalla();
+    detectarColision(); 
 }
 function moverArriba(){
     gatoY+=10;
     actualizarPantalla();
+    detectarColision();
 }
 function moverAbajo(){
     gatoY-=10;
     actualizarPantalla();
+    detectarColision(); 
 }
-function moverIzquierda(){
-    gatoX-=10;
-    actualizarPantalla();
-}
-function moverIzquierda(){
-    gatoX-=10;
-    actualizarPantalla();
-}
+
 function actualizarPantalla(){
     limpiarCanvas();
     graficarGato();
     graficarComida();
 }
+function detectarColision(){
+      // posición REAL del gato
+    let gatoRealX = canvas.width/2 - ANCHO_GATO/2 + gatoX;
+    let gatoRealY = canvas.height/2 - ALTURA_GATO/2 - gatoY;
+
+    // posición REAL de la comida
+    let comidaRealX = canvas.width - ANCHO_COMIDA + comidaX;
+    let comidaRealY = canvas.height - ALTURA_COMIDA + comidaY;
+
+    // colisión
+    if (gatoRealX < comidaRealX + ANCHO_COMIDA &&
+        gatoRealX + ANCHO_GATO > comidaRealX &&
+        gatoRealY < comidaRealY + ALTURA_COMIDA &&
+        gatoRealY + ALTURA_GATO > comidaRealY) {
+            
+        alert("Buen provecho");
+    }
+}
+
 
