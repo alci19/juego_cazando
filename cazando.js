@@ -41,6 +41,26 @@ function moverIzquierda(){
     gatoX-=10;
     actualizarPantalla();
 }
+function moverDerecha(){
+    gatoX+=10;
+    actualizarPantalla();
+}
+function moverArriba(){
+    gatoY+=10;
+    actualizarPantalla();
+}
+function moverAbajo(){
+    gatoY-=10;
+    actualizarPantalla();
+}
+function moverIzquierda(){
+    gatoX-=10;
+    actualizarPantalla();
+}
+function moverIzquierda(){
+    gatoX-=10;
+    actualizarPantalla();
+}
 function actualizarPantalla(){
     limpiarCanvas();
     graficarGato();
