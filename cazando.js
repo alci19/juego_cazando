@@ -10,9 +10,10 @@ const ANCHO_COMIDA=20;
 //posiciones
 let gatoX = 0;
 let gatoY = 0;
-let comidaX = 0;  
-let comidaY = 0;
+let comidaX = canvas.width - ANCHO_COMIDA;  
+let comidaY = canvas.height - ALTURA_COMIDA;
 let tiempo = 10;
+let puntaje = 0;
 let intervalo;
 
 function iniciarJuego(){
@@ -34,7 +35,7 @@ function graficarRectangulo(x, y, ancho, alto, color) {
 }
 
 function graficarComida(){
-    graficarRectangulo(canvas.width - ANCHO_COMIDA + comidaX, canvas.height - ALTURA_COMIDA + comidaY, ANCHO_COMIDA, ALTURA_COMIDA, "orange");
+    graficarRectangulo(comidaX, comidaY, ANCHO_COMIDA, ALTURA_COMIDA, "orange");
 }
 
 function limpiarCanvas(){
@@ -72,17 +73,26 @@ function detectarColision(){
     let gatoRealX = canvas.width/2 - ANCHO_GATO/2 + gatoX;
     let gatoRealY = canvas.height/2 - ALTURA_GATO/2 - gatoY;
 
-    // posición REAL de la comida
-    let comidaRealX = canvas.width - ANCHO_COMIDA + comidaX;
-    let comidaRealY = canvas.height - ALTURA_COMIDA + comidaY;
 
     // colisión
-    if (gatoRealX < comidaRealX + ANCHO_COMIDA &&
-        gatoRealX + ANCHO_GATO > comidaRealX &&
-        gatoRealY < comidaRealY + ALTURA_COMIDA &&
-        gatoRealY + ALTURA_GATO > comidaRealY) {
-            
-        alert("Buen provecho");
+    if (gatoRealX < comidaX + ANCHO_COMIDA &&
+        gatoRealX + ANCHO_GATO > comidaX &&
+        gatoRealY < comidaY + ALTURA_COMIDA &&
+        gatoRealY + ALTURA_GATO > comidaY) {
+        
+        aparecerComida();
+
+        puntaje += 1;
+        mostrarEnSpan("txtpuntos", puntaje);
+
+        if (puntaje >= 6){
+            clearInterval(intervalo);
+            alert("🏆 ¡Ganaste!");
+        }
+
+
+
+
     }
 }
 
@@ -90,6 +100,24 @@ function restarTiempo(){
     tiempo -= 1;
     mostrarEnSpan("txttiempo", tiempo);
     if (tiempo <= 0){
+        clearInterval(intervalo);
         alert("¡Se acabó el tiempo! Intenta de nuevo.");
+
+    }
 }
+function aparecerComida(){
+    comidaX = generarAleatorio(0, canvas.width - ANCHO_COMIDA);
+    comidaY = generarAleatorio(0, canvas.height - ALTURA_COMIDA);
+    actualizarPantalla();
 }
+
+function reiniciar(){
+    //Reiniciar variables en código y en pantalla
+    puntaje = 0;
+    tiempo = 10;
+    mostrarEnSpan("txtpuntos", puntaje);
+    mostrarEnSpan("txttiempo", tiempo);
+
+    iniciarJuego();
+}
+
