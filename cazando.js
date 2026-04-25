@@ -12,7 +12,7 @@ let gatoX = 0;
 let gatoY = 0;
 let comidaX = canvas.width - ANCHO_COMIDA;  
 let comidaY = canvas.height - ALTURA_COMIDA;
-let tiempo = 10;
+let tiempo = 20;
 let puntaje = 0;
 let intervalo;
 
@@ -83,15 +83,13 @@ function detectarColision(){
         aparecerComida();
 
         puntaje += 1;
+        tiempo += 5;
         mostrarEnSpan("txtpuntos", puntaje);
 
         if (puntaje >= 6){
             clearInterval(intervalo);
             alert("🏆 ¡Ganaste!");
         }
-
-
-
 
     }
 }
@@ -114,7 +112,7 @@ function aparecerComida(){
 function reiniciar(){
     //Reiniciar variables en código y en pantalla
     puntaje = 0;
-    tiempo = 10;
+    tiempo = 20;
     mostrarEnSpan("txtpuntos", puntaje);
     mostrarEnSpan("txttiempo", tiempo);
 
