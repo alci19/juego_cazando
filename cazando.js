@@ -83,12 +83,17 @@ function detectarColision(){
         aparecerComida();
 
         puntaje += 1;
-        tiempo = 15;
+       
         mostrarEnSpan("txtpuntos", puntaje);
 
         if (puntaje >= 6){
             clearInterval(intervalo);
-            alert("🏆 ¡Ganaste!");
+            alert("🏆 ¡Ganaste!");x
+        }
+        else{
+            let contador = 0;
+            contador += 1;
+            tiempo = 15 - contador;
         }
 
     }
