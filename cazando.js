@@ -12,7 +12,7 @@ let gatoX = 0;
 let gatoY = 0;
 let comidaX = canvas.width - ANCHO_COMIDA;  
 let comidaY = canvas.height - ALTURA_COMIDA;
-let tiempo = 20;
+let tiempo = 15;
 let puntaje = 0;
 let intervalo;
 
