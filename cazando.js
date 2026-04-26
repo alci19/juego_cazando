@@ -83,7 +83,7 @@ function detectarColision(){
         aparecerComida();
 
         puntaje += 1;
-        tiempo += 5;
+        tiempo = 15;
         mostrarEnSpan("txtpuntos", puntaje);
 
         if (puntaje >= 6){
